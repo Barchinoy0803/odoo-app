@@ -16,6 +16,6 @@ services:
       - key: DB_NAME
         value: myodoo
       - key: DB_FILTER
-        value: ^myodoo$
+        value: "^myodoo$"
     ports:
       - 8069
