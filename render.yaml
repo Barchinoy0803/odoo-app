@@ -6,16 +6,16 @@ services:
     dockerfilePath: ./Dockerfile
     envVars:
       - key: DB_HOST
-        value: postgresql://odoo_app_user:a0o4bJNYaoeO5b1Kpp7zzmrq8CQNjrWP@dpg-d1rlkr6r433s73afuo7g-a/odoo_app
+        value: dpg-d1rlkr6r433s73afuo7g-a
       - key: DB_PORT
         value: "5432"
       - key: DB_USER
-        value: odoo
+        value: odoo_app_user
       - key: DB_PASSWORD
-        value: odoo
+        value: a0o4bJNYaoeO5b1Kpp7zzmrq8CQNjrWP
       - key: DB_NAME
-        value: myodoo
+        value: odoo_app
       - key: DB_FILTER
-        value: "^myodoo$"
+        value: "^odoo_app$"
     ports:
       - port: 8069
