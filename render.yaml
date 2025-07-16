@@ -1,48 +1,21 @@
 services:
   - type: web
-    name: odoo
+    name: odoo-app
     env: docker
-    dockerfilePath: ""  # optional if using prebuilt image
-    image: odoo:17
     plan: standard
-    autoDeploy: true
-    dependsOn:
-      - odoo-db
+    dockerfilePath: ./Dockerfile
     envVars:
-      - key: HOST
-        value: 0.0.0.0
+      - key: DB_HOST
+        value: postgresql://odoo_app_user:a0o4bJNYaoeO5b1Kpp7zzmrq8CQNjrWP@dpg-d1rlkr6r433s73afuo7g-a/odoo_app
+      - key: DB_PORT
+        value: 5432
+      - key: DB_USER
+        value: odoo
+      - key: DB_PASSWORD
+        value: odoo
+      - key: DB_NAME
+        value: myodoo
+      - key: DB_FILTER
+        value: ^myodoo$
     ports:
       - 8069
-    disks:
-      - name: odoo-web-data
-        mountPath: /var/lib/odoo
-    volumeMounts:
-      - path: /mnt/extra-addons
-        name: addons
-    buildCommand: ""
-    startCommand: ""
-
-  - type: pserv
-    name: odoo-db
-    env: docker
-    image: postgres:15
-    plan: starter
-    autoDeploy: false
-    envVars:
-      - key: POSTGRES_DB
-        value: myodoo
-      - key: POSTGRES_USER
-        value: odoo
-      - key: POSTGRES_PASSWORD
-        value: odoo
-    disks:
-      - name: odoo-db-data
-        mountPath: /var/lib/postgresql/data
-
-volumes:
-  - name: odoo-db-data
-    sizeGB: 1
-  - name: odoo-web-data
-    sizeGB: 1
-  - name: addons
-    sizeGB: 1
