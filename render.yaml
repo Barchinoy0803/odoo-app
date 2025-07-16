@@ -17,4 +17,3 @@ services:
         value: odoo_app
       - key: 00_TILTER
         value: "odoo_app"
-   
