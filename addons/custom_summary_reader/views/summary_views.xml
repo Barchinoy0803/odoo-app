@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="view_summary_template_tree" model="ir.ui.view">
+    <field name="name">summary.template.tree</field>
+    <field name="model">summary.template</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="title"/>
+        <field name="description"/>
+        <field name="topic"/>
+        <field name="type"/>
+        <field name="question_count" string="# Questions"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_summary_template_form" model="ir.ui.view">
+    <field name="name">summary.template.form</field>
+    <field name="model">summary.template</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <button name="action_open_token_popup" string="Import from API" type="object" class="btn-primary"/>
+        </header>
+        <sheet>
+          <group>
+            <field name="title" readonly="1"/>
+            <field name="author" readonly="1"/>
+            <field name="description" readonly="1"/>
+            <field name="type" readonly="1"/>
+            <field name="topic" readonly="1"/>
+            <field name="id" readonly="1"/>
+          </group>
+          <notebook>
+            <page string="Questions">
+              <field name="questions" readonly="1">
+                <tree>
+                  <field name="text" readonly="1"/>
+                  <field name="qtype" readonly="1"/>
+                </tree>
+              </field>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

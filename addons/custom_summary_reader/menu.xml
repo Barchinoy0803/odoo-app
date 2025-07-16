@@ -1,0 +1,26 @@
+<odoo>
+  <menuitem id="menu_summary_root" name="Template Analyses" sequence="10"/>
+
+  <record id="action_summary_templates" model="ir.actions.act_window">
+    <field name="name">Templates</field>
+    <field name="res_model">summary.template</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="menu_summary_templates"
+            parent="menu_summary_root"
+            name="Templates"
+            action="action_summary_templates"/>
+
+  <record id="action_import_wizard" model="ir.actions.act_window">
+    <field name="name">Import from API</field>
+    <field name="res_model">import.summary.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record>
+
+  <menuitem id="menu_import_wizard"
+            parent="menu_summary_root"
+            name="Import from API"  
+            action="action_import_wizard"/>
+</odoo>

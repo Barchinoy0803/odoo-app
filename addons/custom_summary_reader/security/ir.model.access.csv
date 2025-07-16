@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_summary_template,summary.template,model_summary_template,base.group_user,1,0,0,0
+access_summary_template_manager,summary.template,model_summary_template,base.group_system,1,1,1,1
+access_summary_question,summary.question,model_summary_question,base.group_user,1,0,0,0
+access_summary_question_manager,summary.question,model_summary_question,base.group_system,1,1,1,1
+access_import_summary_wizard,import.summary.wizard,model_import_summary_wizard,base.group_user,1,1,1,0
+access_summary_answer_user,summary.answer (user),model_summary_answer,base.group_user,1,0,1,0
+access_summary_answer_manager,summary.answer (manager),model_summary_answer,base.group_system,1,1,1,1
+access_summary_analysis_popup_user,summary.analysis.popup.user,model_summary_analysis_popup,base.group_user,1,0,0,0
