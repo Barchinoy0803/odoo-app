@@ -2,13 +2,13 @@ services:
   - type: web
     name: odoo-app
     env: docker
-    plan: standard
     dockerfilePath: ./Dockerfile
+    plan: standard
     envVars:
       - key: DB_HOST
         value: postgresql://odoo_app_user:a0o4bJNYaoeO5b1Kpp7zzmrq8CQNjrWP@dpg-d1rlkr6r433s73afuo7g-a/odoo_app
       - key: DB_PORT
-        value: 5432
+        value: "5432"
       - key: DB_USER
         value: odoo
       - key: DB_PASSWORD
