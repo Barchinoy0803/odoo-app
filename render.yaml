@@ -1,28 +1,48 @@
-version: "3.9"
-
 services:
-  db:
-    image: postgres:15
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: odoo
-      POSTGRES_PASSWORD: odoo
-      POSTGRES_DB: myodoo
-    volumes:
-      - odoo-db-data:/var/lib/postgresql/data
-
-  odoo:
+  - type: web
+    name: odoo
+    env: docker
+    dockerfilePath: ""  # optional if using prebuilt image
     image: odoo:17
-    depends_on:
-      - db
-    restart: unless-stopped
+    plan: standard
+    autoDeploy: true
+    dependsOn:
+      - odoo-db
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
     ports:
-      - "8069:8069"
-    volumes:
-      - ./addons:/mnt/extra-addons
-      - ./config/odoo.conf:/etc/odoo/odoo.conf
-      - odoo-web-data:/var/lib/odoo
+      - 8069
+    disks:
+      - name: odoo-web-data
+        mountPath: /var/lib/odoo
+    volumeMounts:
+      - path: /mnt/extra-addons
+        name: addons
+    buildCommand: ""
+    startCommand: ""
+
+  - type: pserv
+    name: odoo-db
+    env: docker
+    image: postgres:15
+    plan: starter
+    autoDeploy: false
+    envVars:
+      - key: POSTGRES_DB
+        value: myodoo
+      - key: POSTGRES_USER
+        value: odoo
+      - key: POSTGRES_PASSWORD
+        value: odoo
+    disks:
+      - name: odoo-db-data
+        mountPath: /var/lib/postgresql/data
 
 volumes:
-  odoo-db-data:
-  odoo-web-data:
+  - name: odoo-db-data
+    sizeGB: 1
+  - name: odoo-web-data
+    sizeGB: 1
+  - name: addons
+    sizeGB: 1
