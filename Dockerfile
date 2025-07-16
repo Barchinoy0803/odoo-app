@@ -1,6 +1,12 @@
 FROM odoo:17
 
-COPY ./config/odoo.conf /etc/odoo/odoo.conf
+RUN mkdir -p /mnt/extra-addons && \
+    chown -R odoo:odoo /mnt/extra-addons && \
+    chown -R odoo:odoo /var/lib/odoo
+
+COPY ./config/odoo.conf /etc/odoo/
 COPY ./addons /mnt/extra-addons
 
-CMD ["odoo", "-i", "base", "-d", "odoo_app", "--without-demo=all"]
+USER odoo
+
+CMD ["odoo"]

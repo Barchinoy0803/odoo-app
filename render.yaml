@@ -5,15 +5,18 @@ services:
     plan: standard
     dockerfilePath: ./Dockerfile
     envVars:
-      - key: 00_UGST
+      - key: HOST
         value: dpg-dirlkvdw438x73af0w7g-a
-      - key: 00_UGST_PORT
-        value: "4433"
-      - key: 00_USER
+      - key: PORT
+        value: "5432" 
+      - key: USER
         value: odoo_app_user
-      - key: 00_PASSWORD
+      - key: PASSWORD
         value: abode3WYnacG9b1fpp7zamqdQQgjvAP
-      - key: 00_AUME
+      - key: DB_NAME
         value: odoo_app
-      - key: 00_TILTER
-        value: "odoo_app"
+      - key: ADMIN_PASSWD
+        value: admin  
+    ports:
+      - port: 8069
+    healthCheckPath: /web/health
